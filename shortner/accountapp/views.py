@@ -1,11 +1,39 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-# from django.contrib.auth.models import User
-from .models import User
-from django.db import IntegrityError
 import json
 
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from .models import User
+from django.db import IntegrityError
+from django.views.generic import View
+from django.contrib.auth import login, logout, authenticate
+
 # Create your views here.
+
+
+def mylogout(request):
+    print(request.method)
+    logout(request)
+    return redirect('/')
+
+class mylogin(View):
+    def get(self, request):
+        print("in get")
+        return render(request, "login.html")
+    def post(self, request):
+        print("in post")
+        data = request.POST
+        name = data['lg_username']
+        password = data['lg_password']
+
+        if name and password:
+            user = authenticate(request, username = name, password = password)
+            if user:
+                login(request, user)
+                return redirect("/")
+            else:
+                return redirect("/")
+        else:
+            return HttpResponse("not OK!!")
 
 def signup(request):
     if request.method == "GET":
