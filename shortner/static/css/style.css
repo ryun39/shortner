@@ -1,0 +1,8 @@
+.left-box {
+    background: red;
+    float: left;
+}
+.right-box {
+    float: right;
+    padding:10px;
+}
