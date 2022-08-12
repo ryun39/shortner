@@ -34,8 +34,18 @@
 </table>
 
 <h4> Shortner Example </h4>
-<!-- <form class="d-flex" action="{% url "rooms:search" %}" method="post"> -->
-  <input class="form-control me-2" type="text" placeholder="Shorten your link" aria-label="Search">
+<!-- <form class="d-flex" method="post" action="{% url 'shortlink:example'%}">{% csrf_token %} -->
+<form class="d-flex" method="post" action="{% url 'shortlink:index'%}">{% csrf_token %}
+  {% if msg %}
+    <input class="form-control me-2" name="s_text" type="text" placeholder={{msg}} aria-label="Search">
+  {% else %}
+    <input class="form-control me-2" name="s_text" type="text" placeholder="Shorten your link" aria-label="Search">
+  {% endif %}
   <button class="btn btn-outline-success" type="submit">Shorten</button>
-<!-- </form> -->
+</form>
+
+<br>
+{% if sample %}
+  <h4>{{sample}}</h4>
+{% endif %}
 {% endblock %}
