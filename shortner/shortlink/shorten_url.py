@@ -1,8 +1,9 @@
 
-
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from urllib.parse import urlparse
+import pyshorteners
+
 
 def uri_validator(x):
     try:
@@ -14,20 +15,9 @@ def uri_validator(x):
         return False
 
 def make_shorten():
-    # val = URLValidator(verify_exists=False)
-    # try:
-    #     val('http://www.google.com')
-    # except ValidationError as e:
-    #     print(e)
-
-    return "test_url@.com"
-
-
-    # a = 'http://www.cwi.nl:80/%7Eguido/Python.html'
-    # b = '/data/Python.html'
-    # c = 532
-    # d = u'dkakasdkjdjakdjadjfalskdjfalk'
-    # print(uri_validator(a))
-    # print(uri_validator(b))
-    # print(uri_validator(c))
-    # print(uri_validator(d))
+    API_KEY = "bbae968b2337d147f0d1f9086409352110b55c4a"
+    type_bitly = pyshorteners.Shortener(api_key=API_KEY)
+    short_url = type_bitly.bitly.short('https://www.google.com')
+    
+    print("The Shortened URL is: " + short_url)
+    return short_url
