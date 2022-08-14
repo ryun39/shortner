@@ -11,9 +11,9 @@ def index(request):
         url = data['s_text']
         if url:
             if uri_validator(url):
-                new_url = make_shorten()
-                return render(request, 'home.html', {"sample": new_url})
-                # return render(request, redirect('/'), {"sample": new_url})
+                obj = make_shorten(url)
+                context = {'sample': obj}
+                return render(request, 'home.html', context)
             else:
                 w_text = "Please_Try_Again"
                 return render(request, 'home.html', {"msg": w_text})
@@ -21,22 +21,3 @@ def index(request):
             return redirect("/")
     else:
         return render(request, 'home.html')
-
-    # return render(request, 'home.html')
-
-
-@csrf_protect
-def example(request):
-    data = request.POST
-    url = data['s_text']
-    if url:
-        if uri_validator(url):
-            new_url = make_shorten()
-            return render(request, 'home.html', {"sample": new_url})
-            # return render(request, redirect('/'), {"sample": new_url})
-        else:
-            w_text = "Please_Try_Again"
-            return render(request, 'home.html', {"msg": w_text})
-    else:
-        return redirect("/")
-

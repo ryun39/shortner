@@ -3,38 +3,7 @@
 {% block title %} Home {% endblock %}
 
 {% block contents %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-
 <h4> Shortner Example </h4>
-<!-- <form class="d-flex" method="post" action="{% url 'shortlink:example'%}">{% csrf_token %} -->
 <form class="d-flex" method="post" action="{% url 'shortlink:index'%}">{% csrf_token %}
   {% if msg %}
     <input class="form-control me-2" name="s_text" type="text" placeholder={{msg}} aria-label="Search">
@@ -46,6 +15,9 @@
 
 <br>
 {% if sample %}
-  <h4>{{sample}}</h4>
+  <li>
+    URL : <a class="form-control me-2" href="{{ sample.orig_url }}">{{ sample.redic_url }}</a>
+</li>
 {% endif %}
+
 {% endblock %}
