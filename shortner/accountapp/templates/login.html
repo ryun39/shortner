@@ -46,6 +46,11 @@
                 </div>
                 <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
             </div>
+            {% if msg %}
+            <div class="etc-login-form">
+                <p> {{msg}} </p>
+            </div>
+            {% endif %}
             <div class="etc-login-form">
                 <p>forgot your password? <a href="#">click here</a></p>
                 <p>new user? <a href="#">create new account</a></p>

@@ -20,10 +20,8 @@ def mylogout(request):
 
 class mylogin(View):
     def get(self, request):
-        print("in get")
         return render(request, "login.html")
     def post(self, request):
-        print("in post")
         data = request.POST
         name = data['lg_username']
         password = data['lg_password']
@@ -34,7 +32,8 @@ class mylogin(View):
                 login(request, user)
                 return redirect("/")
             else:
-                return redirect("/")
+                context = {'msg':" 아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.입력하신 내용을 다시 확인해주세요."}
+                return render(request, 'login.html', context)
         else:
             return HttpResponse("not OK!!")
 
