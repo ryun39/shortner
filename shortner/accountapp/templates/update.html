@@ -2,9 +2,10 @@
 {% load static %}
 
 
-<title>{% block title %} Register {% endblock %}</title>
+<title>{% block title %} Update {% endblock %}</title>
 {% block extra-style %}
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 {% endblock %}
 
 
@@ -13,7 +14,7 @@
     <div class="row">
         <div class="col-md-8">
             <section>
-                <h1 class="entry-title"><span>Sign Up</span> </h1>
+                <h1 class="entry-title"><span>Update</span> </h1>
                 <hr>
                 <form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -22,8 +23,10 @@
                         <div class="col-md-8 col-sm-9">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <!-- <input type="email" class="form-control" name="emailid" id="emailid"
+                                    placeholder="Enter your Email ID" value=""> -->
                                 <input type="email" class="form-control" name="emailid" id="emailid"
-                                    placeholder="Enter your Email ID" value="">
+                                    placeholder="{{user_info.email}}" value="">
                             </div>
                             <small> Your Email Id is being used for ensuring the security of your account, authorization
                                 and access recovery. </small>
@@ -55,7 +58,7 @@
                         <label class="control-label col-sm-3">이름 <span class="text-danger">*</span></label>
                         <div class="col-md-8 col-sm-9">
                             <input type="text" class="form-control" name="mem_name" id="mem_name"
-                                placeholder="Enter your Name here" value="">
+                                placeholder="{{user_info.username}}" value="">
                         </div>
                     </div>
                     <div class="form-group">

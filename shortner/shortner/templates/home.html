@@ -13,11 +13,25 @@
   <button class="btn btn-outline-success" type="submit">Shorten</button>
 </form>
 
+
 <br>
 {% if sample %}
-  <li>
-    URL : <a class="form-control me-2" href="{{ sample.orig_url }}">{{ sample.redic_url }}</a>
-</li>
+<table class="table table-hover">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">Origin URL</th>
+      <th scope="col">Redirec URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{ sample.orig_url }}
+      </td>
+      <td text-align="left" onClick="location.href='{{sample.redic_url}}'" style="cursor:pointer; color:blue">{{sample.redic_url}}</td> 
+    </tr>
+  </tbody>
+</table>
 {% endif %}
 
 {% endblock %}

@@ -7,8 +7,11 @@ from django.db import IntegrityError
 from django.views.generic import View
 from django.contrib.auth import login, logout, authenticate
 
-# Create your views here.
-
+def profile(request):
+    if request.method == "GET":
+        row = User.objects.get(username=request.user)
+        context = {'user_info': row}
+        return render(request, 'update.html', context)
 
 def mylogout(request):
     print(request.method)
