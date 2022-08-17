@@ -1,4 +1,5 @@
 import json
+from xxlimited import Null
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -10,7 +11,16 @@ from django.contrib.auth import login, logout, authenticate
 def profile(request):
     if request.method == "GET":
         row = User.objects.get(username=request.user)
-        context = {'user_info': row}
+
+        dd = str(row.DateOfBirth)
+        dd = dd.split('-')
+
+        pp = ""
+        if row.Payplan == "Agree":
+            pp = str(row.Payplan)
+            pp = dd.split('-')
+
+        context = { 'user_info':row, "BD":dd, "PP":pp }
         return render(request, 'update.html', context)
 
 def mylogout(request):
@@ -43,6 +53,7 @@ def signup(request):
     elif request.method == "POST":
         # 회원정보 DB 저장 로직
         data = request.POST
+        print(data)
         
         emailid   = data['emailid']
         pw1       = data['password']
@@ -62,10 +73,13 @@ def signup(request):
         contact   = data['contactnum']
         payplan   = data['payplan']
 
-        period_dd = data['p_dd']
-        period_mm = data['p_mm']
-        period_yy = data['p_yyyy']
-        period = period_yy + "-" + period_mm + "-" + period_dd
+        period = None
+        if data['p_dd']:
+            print("in preido")
+            period_dd = data['p_dd']
+            period_mm = data['p_mm']
+            period_yy = data['p_yyyy']
+            period = period_yy + "-" + period_mm + "-" + period_dd
 
         try :
             user = User.objects.create_user(
