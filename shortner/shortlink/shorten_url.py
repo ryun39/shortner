@@ -3,9 +3,10 @@ import pyshorteners
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from urllib.parse import urlparse
+import random
+import string
 
 from .models import Sample
-
 
 def uri_validator(x):
     try:
@@ -26,4 +27,3 @@ def make_shorten(url):
     
     print("The Shortened URL is: " + short_url)
     return s
-    # return short_url

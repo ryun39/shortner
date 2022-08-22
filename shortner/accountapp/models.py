@@ -7,4 +7,3 @@ class User(AbstractUser):
     Contact     = models.CharField(max_length=12)  # 연락처
     Payplan     = models.CharField(max_length=2)   # 유료가입
     Period      = models.DateField(null=True, blank=True) # 유료가입 기간
-    Url_cnt     = models.IntegerField(blank=False) # 최대 URL 갯수
