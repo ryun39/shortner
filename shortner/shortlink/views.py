@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from django.conf import settings
 from django.views.decorators.csrf import csrf_protect
 from .shorten_url import make_shorten, uri_validator
+from django.http.response import HttpResponse
+
 
 @csrf_protect
 def index(request):
@@ -21,3 +23,11 @@ def index(request):
             return redirect("/")
     else:
         return render(request, 'home.html')
+
+def CreateUrl(request):
+
+    return HttpResponse("in Create Url")
+
+def UpdateUrl(request):
+
+    return HttpResponse("in Update Url")

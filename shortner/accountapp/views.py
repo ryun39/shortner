@@ -1,5 +1,3 @@
-import json
-from xxlimited import Null
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -7,6 +5,7 @@ from .models import User
 from django.db import IntegrityError
 from django.views.generic import View
 from django.contrib.auth import login, logout, authenticate
+
 
 def profile(request):
     if request.method == "GET":
@@ -20,11 +19,10 @@ def profile(request):
             pp = str(row.Payplan)
             pp = dd.split('-')
 
-        context = { 'user_info':row, "BD":dd, "PP":pp }
+        context = {'user_info':row, "BD":dd, "PP":pp}
         return render(request, 'update.html', context)
 
 def mylogout(request):
-    print(request.method)
     logout(request)
     return redirect('/')
 
@@ -34,10 +32,10 @@ class mylogin(View):
     def post(self, request):
         data = request.POST
         name = data['lg_username']
-        password = data['lg_password']
+        Password = data['lg_password']
 
-        if name and password:
-            user = authenticate(request, username = name, password = password)
+        if name and Password:
+            user = authenticate(request, username = name, password = Password)
             if user:
                 login(request, user)
                 return redirect("/")
@@ -53,7 +51,6 @@ def signup(request):
     elif request.method == "POST":
         # 회원정보 DB 저장 로직
         data = request.POST
-        print(data)
         
         emailid   = data['emailid']
         pw1       = data['password']
@@ -92,11 +89,8 @@ def signup(request):
             password    = pw1,
             username    = name
             )
-
             
         except IntegrityError:
             return HttpResponse("정보 오류")
-
-
         return redirect("/")
 
