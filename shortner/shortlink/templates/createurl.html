@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %} 신규등록 {% endblock %}</title>
+
+{% block extra-style %}
+{% endblock %}
+
+{% block contents %}
+<br><br>
+
+<h4> URL을 입력하세요. </h4>
+<form class="d-flex" method="post" action="{% url 'shortlink:create'%}">{% csrf_token %}
+    {% if msg %}
+    <input class="form-control me-2" name="s_text" type="text" placeholder={{msg}} aria-label="Search">
+    {% else %}
+    <input class="form-control me-2" name="s_text" type="text" placeholder="Shorten your link" aria-label="Search">
+    {% endif %}
+    <button class="btn btn-outline-success" type="submit">Create</button>
+</form>
+{% endblock %}

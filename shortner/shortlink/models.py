@@ -15,5 +15,6 @@ class Sample(models.Model):
     redic_url = models.CharField(max_length=2000)
 
 class UserShortenList(TimeStampedModel):
-    user_id     = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id     = models.ForeignKey('accountapp.User', on_delete=models.CASCADE)
     shorten_url = models.CharField(max_length=2000, blank=False)
+    origin_url  = models.CharField(max_length=2000, blank=False)
